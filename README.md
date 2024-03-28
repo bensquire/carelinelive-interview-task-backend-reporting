@@ -1,66 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CareLineLive Interview Test
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
 
-## About Laravel
+Thanks for taking the time to complete this test; it will help us evaluate your ability and approach to
+problem-solving.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+We appreciate that your time is valuable, so we have tried to keep the test as short as possible. We're not too
+concerned with completeness, as long as you can demonstrate an appropriate understanding of the problem and a good
+approach to solving it.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This repository has been set up with a bare bones Laravel 11 application that should let you get started quickly. It's
+configured to use SQLite, but feel free to change to either MySQL or Postgres. You have free reign over the design and
+implementation of the solution, and feel free to make modifications to any existing code.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Please include a description of any features that you intended to implement but did not have time to complete, including
+a high-level explanation of they would have been implemented.
 
-## Learning Laravel
+### Testing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+We expect an appropriate level of testing to be included with your submission. Currently the application is configured
+to use PHPUnit for testing, though you may switch to [Pest](https://pestphp.com/) if you prefer:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```shell
+composer require pestphp/pest pestphp/pest-plugin-laravel pestphp/pest-plugin-drift --dev --with-all-dependencies
+./vendor/bin/pest --drift
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+You can run the tests using:
+```shell
+php artisan test
+```
 
-## Laravel Sponsors
+### Submission
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Please submit your solution as a fork of this repository. Once you're ready, please send us a link to your fork. You may
+either publish it publicly or privately, however please ensure that we have access to view private repositories.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## The problem
 
-## Contributing
+You have been asked to create a simple application that will allow users to analyse attendance for home care visits.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Users should be able to calculate the following information:
 
-## Code of Conduct
+- The total number of visits for a given period (day, week, month, year)
+- Punctuality of visits (on time, early, late, missed), with configurable thresholds
+- The average duration of visits for a given period
+- Notice given when visits are cancelled (amount of time before the planned start time)
+- Distribution within a given period of:
+    - Visit start times
+    - Visit durations
+    - Delivery status
+    - Visit punctuality
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Users should also be able to filter the data by:
 
-## Security Vulnerabilities
+- Type of visit (e.g. medication, personal care, meal preparation)
+- Delivery status (e.g. completed, cancelled, rescheduled)
+- Punctuality (e.g. on time, late, missed)
+- Visit duration (e.g. less than 30 minutes, more than 1 hour)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Out of scope
+You are not expected to implement the following:
 
-## License
+- Authentication and authorisation
+- User interface (web or API)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Bonus points
+
+- Implement a API or UI to allow users to interact with the data
+- Export results to a CSV file
+- Geospatial analysis of arrival and departure locations against the client's location
+
+---
+
+## Set up local environment
+
+Ensure you have the following dependencies installed on your local machine:
+
+- PHP 8.2+
+
+Configure the application for local development using the following commands:
+
+```shell
+cp .env.example .env
+php artisan key:generate
+```
+
+## Running locally
+
+### Web
+
+```shell
+php artisan serve
+```
+
+### Tests
+
+```shell
+php artisan test
+```
