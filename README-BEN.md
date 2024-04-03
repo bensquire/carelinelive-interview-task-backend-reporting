@@ -152,6 +152,8 @@ can be accessed via the [punctuality endpoint](#Punctuality).
     - How much will it increase the load on the server?
     - How fast can will the reports generate with real data?
 - How much actual data is there to process on dev?
+- What is an acceptable delay to generate the statistics?
+- How many of these reports will be requested at any 1 time?
 - Will the raw SQL work on the production DB (sqlite vs ??)
 
 ## Useful Commands
