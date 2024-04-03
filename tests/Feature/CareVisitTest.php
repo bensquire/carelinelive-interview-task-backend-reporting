@@ -95,7 +95,7 @@ class CareVisitTest extends TestCase
     public function it_requires_arrival_timestamp_for_frustrated_visits(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Arrival and departure timestamps are required for frustrated visits.');
+        $this->expectExceptionMessage('Arrival timestamps are required for frustrated visits.');
 
         CareVisit::factory()->create([
             'delivery_status' => CareVisitDeliveryStatus::Frustrated,

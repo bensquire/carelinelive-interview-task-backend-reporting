@@ -69,7 +69,6 @@ class CareVisitFactory extends Factory
             'type' => $this->faker->randomElement(CareVisitType::class),
             'care_worker_id' => CareWorkerFactory::new(),
             'service_user_id' => ServiceUserFactory::new(),
-            'delivery_status' => CareVisitDeliveryStatus::Pending,
             'start' => $start,
             'finish' => $finish,
         ];
@@ -98,6 +97,18 @@ class CareVisitFactory extends Factory
                 endDate: $attributes['start']
             ),
         ]);
+    }
+
+    public function frustrated(): self
+    {
+        return $this->state(function (array $attributes) {
+            // Between an hour before and an hour after the start time.
+            $arrival = $attributes['start']->toImmutable()->addMinutes($this->faker->numberBetween(-60, 60));
+
+            return [
+                'arrival_at' => $arrival
+            ];
+        });
     }
 
     public function delivered(): self

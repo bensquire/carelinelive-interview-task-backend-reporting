@@ -74,7 +74,7 @@ class CareVisit extends Model
                 // If the visit is frustrated, arrival timestamp is required and departure timestamp is not allowed
                 case CareVisitDeliveryStatus::Frustrated:
                     if (!isset($visit->arrival_at)) {
-                        throw new InvalidArgumentException('Arrival and departure timestamps are required for frustrated visits.');
+                        throw new InvalidArgumentException('Arrival timestamps are required for frustrated visits.');
                     }
                     if (isset($visit->departure_at)) {
                         throw new InvalidArgumentException('Departure timestamp is not required for frustrated visits.');
