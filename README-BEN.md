@@ -89,10 +89,10 @@ Which share a common set of possible filters (note, not all are applicable to ev
                      │     │          Middleware          │      
                            └───────────────┬──────────────┘     │
                      │     ┌───────────────┴──────────────┐      
-                           │   Authorisation Middleware   │     │
+                           │  Authentication Middleware   │     │
                      │     └───────────────┬──────────────┘      
                            ┌───────────────┴──────────────┐     │
-                     │     │  Authentication Middleware   │      
+                     │     │   Authorisation Middleware   │      
                            └───────────────┬──────────────┘     │
                      │     ┌───────────────┴──────────────┐      
         ┌──────────────────│ Entity existence Middleware  │     │
@@ -117,6 +117,19 @@ Which share a common set of possible filters (note, not all are applicable to ev
                            └──────────────────────────────┘      
 ```
 
+#### Middleware
+
+The authentication and authorisation middleware are as you would expect in a restful API, simply checking if a user can
+access the system and what they can access within the system. In a similar the manner the "entity existence" middleware
+would check if a specific a resource exists, in this scenario that could be a company,
+
+The "Query Parameters Validation Middleware" would be similar to what was implemented in Phase 1, all be it much more
+thorough. I'd anticipate having a separate validator per feature, possibly using traits to share common validation
+patterns between features.
+
+Ultimately by the time the request gets to the controller, we should have confidence in users right to access
+the data and that what they're requesting is viable.
+
 #### Controller Structure
 
 Each controller (or method within a single controller), will be responsible for collating the data for a single feature.
@@ -140,7 +153,6 @@ can be accessed via the [punctuality endpoint](#Punctuality).
     - How fast can will the reports generate with real data?
 - How much actual data is there to process on dev?
 - Will the raw SQL work on the production DB (sqlite vs ??)
--
 
 ## Useful Commands
 
